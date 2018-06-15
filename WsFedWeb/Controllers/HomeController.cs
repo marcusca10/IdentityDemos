@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WsFedWeb.Models;
+using MCA.Demos.Identity.WsFedWeb.Models;
 
 namespace MCA.Demos.Identity.WsFedWeb.Controllers
 {
@@ -21,7 +21,8 @@ namespace MCA.Demos.Identity.WsFedWeb.Controllers
         {
             ViewData["Message"] = "Your application description page.";
 
-            return View();
+            if (User.Claims != null) { return View(User.Claims); }
+            else { return View(); };
         }
 
         public IActionResult Contact()
